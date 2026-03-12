@@ -2,7 +2,6 @@ package com.Gaurav.LMS3.Service.UserServicePackage;
 
 import com.Gaurav.LMS3.Entity.UserEntityPackage.UserEntity;
 import com.Gaurav.LMS3.Repository.UserEntityRepository;
-import org.jspecify.annotations.NullMarked;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service @NullMarked
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
     private final UserEntityRepository userEntityRepository;
     public CustomUserDetailsService(UserEntityRepository userEntityRepository) {

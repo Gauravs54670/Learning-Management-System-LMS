@@ -43,7 +43,12 @@ public class LMS3Configuration {
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.authorizeHttpRequests(
                 request -> request
-                        .requestMatchers("/public/**","/auth/**").permitAll()
+                        .requestMatchers(
+                                "/public/**",
+                                "/auth/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html").permitAll()
                         .requestMatchers("/learner/**","/enrollment/**").hasRole("LEARNER")
                         .requestMatchers("/instructor/**","/course/**").hasRole("INSTRUCTOR")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -73,7 +78,7 @@ public class LMS3Configuration {
         return httpSecurity.build();
     }
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
     @Bean

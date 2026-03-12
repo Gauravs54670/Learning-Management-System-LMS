@@ -10,6 +10,26 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<?> handleIllegalStatusException(IllegalStateException ex) {
+        ex.printStackTrace();
+        APIError apiError = APIError.builder()
+                .responseStatus(HttpStatus.BAD_REQUEST.value())
+                .message(ex.getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(ClassNotFoundException.class)
+    public ResponseEntity<APIError> handleClassNotFoundException(ClassNotFoundException ex) {
+        ex.printStackTrace();
+        APIError apiError = APIError.builder()
+                .responseStatus(HttpStatus.NOT_FOUND.value())
+                .message(ex.getMessage())
+                .timeStamp(LocalDateTime.now())
+                .build();
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+    }
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<APIError> handleRunTimeException(RuntimeException runtimeException) {
         APIError apiError = APIError.builder()
