@@ -75,6 +75,8 @@ LEARNER
 
 ## API Endpoints
 ** 📁 Public
+
+
 POST	Register User	/api/lms3/public/register-user
 POST	Verify User	/api/lms3/public/verify-user
 POST	User Sign In	/api/lms/auth/login
@@ -88,6 +90,8 @@ GET	Get Public Instructor Profile	/api/lms/public/get-instructorProfile?instruct
 GET	Get Cloudinary Resource	https://res.cloudinary.com/...
 
 ** 📂 User → Instructor
+
+
 Method	Name	Endpoint
 GET	Get Profile	/api/lms3/instructor/get-myProfile
 PUT	Update Profile	/api/lms3/instructor/update-profile
@@ -105,6 +109,8 @@ PUT	Activate Course	/api/lms/course/activate-course/{id}
 GET	Get All Enrollments	/api/lms/instructor/get-allEnrollments/{id}
 
 ** 📂 User → Learner
+
+
 Method	Name	Endpoint
 GET	Get Profile	/api/lms3/learner/get-myProfile
 PUT	Update Profile	/api/lms3/learner/update-profile
@@ -116,6 +122,8 @@ POST	Add Review to Course	/api/lms3/learner/addReview-Course/{id}
 PUT	Check Course Completion	/api/lms3/course/mar-check/{courseId}/{mediaId}?check=
 
 ** 📂 User → Instructor → Course
+
+
 Method	Name	Endpoint
 POST	Register Course	/api/lms3/course/register-course
 POST	Upload Media	/api/lms3/course/upload-media/{id}
@@ -128,6 +136,8 @@ GET	Get Course Medias	/api/lms3/course/get-course-medias/{id}
 DELETE	Delete Course Media	/api/lms3/course/delete-media/{id}
 
 ** 📂 User → Learner → Enrollment
+
+
 Method	Name	Endpoint
 POST	Enroll in Course	/api/lms3/learner/enroll/{courseId}
 GET	Check Enrollment	/api/lms3/enrollment/isEnrolled/{courseId}
@@ -135,16 +145,22 @@ GET	Get My Enrollments	/api/lms3/enrollment/myEnrollments
 GET	Get All My Enrollments	/api/lms/learner/get-allMyEnrollments
 
 ** 📂 User → User (Account)
+
+
 Method	Name	Endpoint
 POST	Verify for Password Change	/api/lms3/user/password-change-request/verify-account
 POST	Change Password	/api/lms3/user/password-change?otp=&new password=
 
 ** 📁 Review
+
+
 Method	Name	Endpoint
 POST	Add Review to Course	/api/lms3/learner/addReview-Course/{id}
 DELETE	Delete Review	/lms/api/review/delete-review/{id}
 
 ** 📁 Admin
+
+
 Method	Name	Endpoint
 GET	Get All Learners	/api/lms3/admin/all-learners
 GET	Get All Instructors	/api/lms3/admin/all-instructors
