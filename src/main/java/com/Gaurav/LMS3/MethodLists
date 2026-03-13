@@ -1,2 +1,156 @@
-1-> download course medias
-2->
+// ==============================
+// CourseService
+// ==============================
+
+registerCourse()
+updateCourse()
+deleteCourse()                  // CourseService
+
+changeAvailabilityOfCourse()
+getCourse()
+getAllPublicCourses()
+getPublicCourseByLearner()
+searchPublicCourses()
+getCoursesByCategory()
+
+uploadMedia()
+deleteCourseMedia()
+getCourseMedias()
+mediaPreview()
+
+updateMediaMeta()               // update title / description
+reorderMedia()                  // change order of lectures
+
+
+// ==============================
+// MediaProgressService
+// ==============================
+
+evaluateMediaProgress()
+getMediaProgress()              // MediaProgressService
+getCourseProgress()
+markCourseCompleted()
+getCompletedCourses()
+
+
+// ==============================
+// EnrollmentService
+// ==============================
+
+enrollInCourse()
+isEnrolledInCourse()
+getMyEnrollments()
+cancelEnrollment()
+
+getEnrollmentStatus()           // EnrollmentService
+completeEnrollment()
+
+
+// ==============================
+// CourseReviewService
+// ==============================
+
+addReview()
+deleteReview()
+
+updateReview()                  // CourseReviewService
+getCourseReviews()
+getMyReviews()
+
+
+// ==============================
+// InstructorService
+// ==============================
+
+updateProfile()
+getMyProfile()
+getInstructorStats()
+
+publishCourse()
+draftCourse()
+discontinueCourse()
+
+getPublicCourseOverviews()
+getDraftCourseOverview()
+getDiscontinuedCourseOverview()
+
+getAllMyCourseReviews()
+getAllReviewsOfCourse()
+getAllMyReviews()
+
+getInstructorCourses()          // InstructorService
+getCourseStudents()
+
+
+// ==============================
+// AdminService
+// ==============================
+
+getAllLearners()
+getAllInstructors()
+
+suspendUser()
+activateUser()
+deactivateUser()
+
+getUserProfile()
+
+getCourseOfInstructor()
+getIndividualCourse()
+
+publishCourse()
+discontinueCourse()
+
+deleteCourseReview()
+deleteInstructorReview()
+
+getAllReviewsOfCourses()
+getInstructorReviews()
+getAllCourseReviewsOfStudent()
+getAllInstructorReviewsOfStudent()
+
+approveCourse()                 // AdminService
+rejectCourse()
+blockCourse()
+deleteCourse()
+
+
+// ==============================
+// StudentService
+// ==============================
+
+getMyProfile()
+updateMyProfile()
+updateToInstructor()
+
+getCourse()
+getMedia()
+
+getMyCourses()                  // StudentService
+getCourseProgress()
+getCompletedCourses()
+
+
+// ==============================
+// PublicService
+// ==============================
+
+registerUser()
+forgotPasswordRequest()
+changeAccountPassword()
+
+verifyOTP()                     // PublicService
+resendOTP()
+
+
+// ==============================
+// UserService
+// ==============================
+
+changeAccountStatus()
+verifyUserForPasswordChange()
+changePassword()
+getMyAccountStatus()
+getMyRoles()
+
+getMyDetails()                  // UserService

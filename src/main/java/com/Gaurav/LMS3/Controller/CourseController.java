@@ -3,6 +3,7 @@ package com.Gaurav.LMS3.Controller;
 import com.Gaurav.LMS3.DTO.CourseDTO.*;
 import com.Gaurav.LMS3.DTO.CourseDTO.MediaDTO.CourseMediaDTOPreview;
 import com.Gaurav.LMS3.Service.CourseServicePackage.CourseService;
+import com.Gaurav.LMS3.Service.CourseServicePackage.MediaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,8 +16,12 @@ import java.util.Map;
 @RestController @RequestMapping("/course")
 public class CourseController {
     private final CourseService courseService;
-    public CourseController(CourseService courseService) {
+    private final MediaService mediaService;
+    public CourseController(
+            MediaService mediaService,
+            CourseService courseService) {
         this.courseService = courseService;
+        this.mediaService = mediaService;
     }
 //    registering course
     @PostMapping("/register-course")
@@ -120,6 +125,20 @@ public class CourseController {
         return new ResponseEntity<>(Map.of(
                 "message", "Course medias fetched successfully",
                 "response", courseMedias
+        ),HttpStatus.OK);
+    }
+//    mark check or uncheck on any media by learner
+    @PutMapping("/mark-check/{courseId}/{mediaId}")
+    public ResponseEntity<?> markCheck(
+            Authentication authentication,
+            @PathVariable("courseId") Long courseId,
+            @PathVariable("mediaId") Long mediaId,
+            @RequestParam("check") boolean check) {
+        String email = authentication.getName();
+        String message = this.mediaService.markMediaCompletionCheck(
+                email,courseId,check,mediaId);
+        return new ResponseEntity<>(Map.of(
+                "message", message
         ),HttpStatus.OK);
     }
 }

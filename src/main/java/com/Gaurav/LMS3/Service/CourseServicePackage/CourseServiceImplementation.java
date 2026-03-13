@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 
 @Service @Transactional @Slf4j
 public class CourseServiceImplementation
-        implements CourseService, MediaProgressService{
+        implements CourseService, MediaService {
 
     private final MediaProgressEntityRepository mediaProgressEntityRepository;
     private final InstructorEntityRepository instructorEntityRepository;
@@ -133,6 +133,7 @@ public class CourseServiceImplementation
             CourseMediaEntity courseMediaEntity = CourseMediaEntity.builder()
                     .course(course)
                     .courseMediaType(courseMediaType)
+                    .mediaCompletionCheck(MediaCompletionCheck.IN_COMPLETED)
                     .cloudinaryId(cloudId)
                     .mediaUrl(url)
                     .mediaDuration(duration)
@@ -358,7 +359,8 @@ public class CourseServiceImplementation
     }
 //    evaluate the media progress
     @Override
-    public MediaProgressDTOResponse evaluateMediaProgress(String email, Long courseId, MediaProgressDTORequest request) {
+    public MediaProgressDTOResponse evaluateMediaProgress(
+            String email, Long courseId, MediaProgressDTORequest request) {
         UserEntity user = this.userEntityRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found."));
         EnrollmentEntity enrollment = this.enrollmentEntityRepository
@@ -398,6 +400,32 @@ public class CourseServiceImplementation
                 .completed(mediaProgressEntity.getIsCompleted())
                 .build();
     }
+//    mark the media check when media is completed
+    @Override
+    public String markMediaCompletionCheck(String email, Long courseId, boolean check, Long mediaId) {
+        UserEntity learner = this.userEntityRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User not found."));
+        if(learner.getAccountStatus().equals(UserAccountStatus.DEACTIVATED))
+            throw new AccessDeniedException("Learner's account is DEACTIVATED.");
+        if(learner.getAccountStatus().equals(UserAccountStatus.SUSPENDED))
+            throw new AccessDeniedException("Learner's account is SUSPENDED.");
+        CourseEntity course = this.courseEntityRepository.findById(courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found."));
+        if(course.getCourseStatus().equals(CourseStatus.ADMIN_DISCONTINUE))
+            throw new AccessDeniedException("Can't perform any action on this course. Discontinued by ADMIN.");
+        CourseMediaEntity mediaEntity = this.mediaEntityRepository
+                .findByMediaIdAndCourse_CourseId(mediaId, courseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Media does not exist."));
+        boolean isEnrollmentExist = this.enrollmentEntityRepository
+                .findByEnrolledStudent_Student_UserIdAndCourse_CourseId(
+                        learner.getUserId(),courseId).isPresent();
+        if(!isEnrollmentExist) throw new AccessDeniedException("You have not done enrollment for this course.");
+        mediaEntity.setMediaCompletionCheck(
+                check ? MediaCompletionCheck.COMPLETED : MediaCompletionCheck.IN_COMPLETED);
+        this.mediaEntityRepository.save(mediaEntity);
+        return "Check uploaded.";
+    }
+
     //    helper methods
 //    update complete course completion percentage
     private void updateCourseCompletionPercentage(EnrollmentEntity enrollment) {

@@ -8,7 +8,7 @@ import com.Gaurav.LMS3.DTO.CourseDTO.MediaDTO.MediaProgressDTORequest;
 import com.Gaurav.LMS3.DTO.CourseDTO.MediaDTO.MediaProgressDTOResponse;
 import com.Gaurav.LMS3.DTO.UserDTO.Student.StudentProfileDTO;
 import com.Gaurav.LMS3.DTO.UserDTO.Student.StudentProfileUpdateRequest;
-import com.Gaurav.LMS3.Service.CourseServicePackage.MediaProgressService;
+import com.Gaurav.LMS3.Service.CourseServicePackage.MediaService;
 import com.Gaurav.LMS3.Service.ReviewServicePackage.CourseReviewService;
 import com.Gaurav.LMS3.Service.UserServicePackage.StudentService;
 import com.Gaurav.LMS3.Service.UserServicePackage.UserService;
@@ -21,12 +21,12 @@ import java.util.Map;
 
 @RestController @RequestMapping("/learner")
 public class StudentController {
-    private final MediaProgressService mediaProgressService;
+    private final MediaService mediaProgressService;
     private final CourseReviewService courseReviewService;
     private final UserService userService;
     private final StudentService studentService;
     public StudentController(
-            MediaProgressService mediaProgressService,
+            MediaService mediaProgressService,
             CourseReviewService courseReviewService,
             UserService userService,
             StudentService studentService) {

@@ -1,5 +1,6 @@
 package com.Gaurav.LMS3.Service.CourseServicePackage;
 
+import com.Gaurav.LMS3.DTO.CourseDTO.Enrollment.EnrolledCourseDTO;
 import com.Gaurav.LMS3.DTO.CourseDTO.InstructorCourseEntityDTO;
 import com.Gaurav.LMS3.DTO.CourseDTO.*;
 import com.Gaurav.LMS3.DTO.CourseDTO.MediaDTO.CourseMediaDTOPreview;

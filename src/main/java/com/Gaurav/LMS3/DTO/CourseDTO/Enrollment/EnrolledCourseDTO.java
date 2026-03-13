@@ -1,6 +1,5 @@
 package com.Gaurav.LMS3.DTO.CourseDTO.Enrollment;
 
-import com.Gaurav.LMS3.DTO.CourseDTO.MediaDTO.IntroThumbnailCourseMediaDTO;
 import com.Gaurav.LMS3.Entity.CourseEntityPackage.CourseStatus;
 import com.Gaurav.LMS3.Entity.CourseEntityPackage.CourseType;
 import lombok.*;
@@ -16,5 +15,6 @@ public class EnrolledCourseDTO {
     private CourseType courseType;
     private CourseStatus courseStatus;
     private String courseDuration;
-    private List<IntroThumbnailCourseMediaDTO> courseMediaEntityDTOS;
+    private String courseThumbnail;
+    private String courseIntro;
 }

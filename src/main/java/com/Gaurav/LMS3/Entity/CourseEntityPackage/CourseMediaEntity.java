@@ -20,6 +20,8 @@ public class CourseMediaEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private CourseMediaType courseMediaType;
+    @Enumerated(EnumType.STRING)
+    private MediaCompletionCheck mediaCompletionCheck;
     @Column(nullable = false)
     private String cloudinaryId;
     @Column(nullable = false)
