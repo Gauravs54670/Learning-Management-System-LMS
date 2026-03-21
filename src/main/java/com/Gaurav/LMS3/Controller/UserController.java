@@ -15,18 +15,18 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-//    verify account before changing password
+    //    verify account before changing password
     @PostMapping("/password-change-request/verify-account")
     public ResponseEntity<?> verifyAccountForPasswordChange(
             @RequestParam(name = "old password") String oldPassword,
             Authentication authentication) {
-                String email = authentication.getName();
-                String message = this.userService.verifyUserForPasswordChange(email, oldPassword);
-                return new ResponseEntity<>(Map.of(
-                        "message", message
-                ), HttpStatus.OK);
+        String email = authentication.getName();
+        String message = this.userService.verifyUserForPasswordChange(email, oldPassword);
+        return new ResponseEntity<>(Map.of(
+                "message", message
+        ), HttpStatus.OK);
     }
-//    change password
+    //    change password
     @PostMapping("/password-change")
     public ResponseEntity<?> changePassword(
             Authentication authentication,
@@ -36,14 +36,14 @@ public class UserController {
         String message = this.userService.changePassword(email, otp, newPassword);
         return new ResponseEntity<>(Map.of("message", message),HttpStatus.OK);
     }
-//    get account status
+    //    get account status
     @GetMapping("/account-status")
     public ResponseEntity<?> accountStatus(Authentication authentication) {
         String email = authentication.getName();
         String response = this.userService.getMyAccountStatus(email);
         return new ResponseEntity<>(Map.of("response", response),HttpStatus.OK);
     }
-//    get user's roles
+    //    get user's roles
     @GetMapping("/get-roles")
     public ResponseEntity<?> getRoles(Authentication authentication) {
         String email = authentication.getName();

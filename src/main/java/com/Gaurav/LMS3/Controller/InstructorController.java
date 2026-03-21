@@ -105,7 +105,7 @@ public class InstructorController {
     }
     @PutMapping("/discontinue-course/{courseId}")
     public ResponseEntity<?> discontinueCourse(
-            @PathVariable("/courseId") Long courseId,
+            @PathVariable("courseId") Long courseId,
             Authentication authentication) {
         String email = authentication.getName();
         this.instructorService.discontinueCourse(email, courseId);

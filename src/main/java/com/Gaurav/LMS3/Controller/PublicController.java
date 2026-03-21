@@ -37,8 +37,7 @@ public class PublicController {
     }
 
     @PostMapping("/verify-user")
-    public ResponseEntity<?> verifyUser(Authentication authentication) {
-        String email = authentication.getName();
+    public ResponseEntity<?> verifyUser(@RequestParam("email") String email) {
         String message = this.publicService.forgotPasswordRequest(email);
         return new ResponseEntity<>(Map.of("message", message), HttpStatus.OK);
     }
