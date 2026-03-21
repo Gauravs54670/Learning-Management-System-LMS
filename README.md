@@ -1,310 +1,281 @@
-# LMS3 - Learning Management System Backend (Spring Boot)
+# LMS3 — Learning Management System API
 
-#Short Description
-- This is a backend REST API for a Learning Management System built using Spring Boot.
-- The application supports course creation, media upload, enrollment, authentication,
-role-based authorization, and course management.
-- This project does not include UI. All operations are performed using REST APIs.
+A backend REST API for a Learning Management System built with Spring Boot.
+Supports course creation, media upload, enrollment, JWT authentication, and role-based authorization.
+
+> This project does not include a UI. All operations are performed via REST APIs.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Language | Java 17 |
+| Framework | Spring Boot |
+| Security | Spring Security + JWT |
+| ORM | Spring Data JPA / Hibernate |
+| Database | MySQL |
+| Build Tool | Maven |
+| Media Storage | Cloudinary |
+| API Documentation | Swagger (SpringDoc OpenAPI) |
+| API Testing | Postman |
+
+---
 
 ## Features
 
-- User Authentication (Basic Auth / JWT)
-- Role-based authorization (ADMIN / INSTRUCTOR / LEARNER)
-- Course creation and management
-- Course media upload (Thumbnail / Intro / Videos)
-- Ordered media playlist support
-- Course enrollment system
-- Public course listing
-- Course filtering and searching
-- Account status handling (ACTIVE / SUSPENDED / DEACTIVATED)
-- Exception handling with JSON response
-- Transactional service logic
+- JWT-based authentication and authorization
+- Role-based access control — ADMIN, INSTRUCTOR, LEARNER
+- Course creation, publishing, drafting, and discontinuation
+- Course media upload — Thumbnail, Intro Video, Course Videos
+- Ordered media playlist with auto-reorder after deletion
+- Course enrollment system with cancellation support
+- Public course listing, keyword search, and category filtering
+- Account status management — ACTIVE, SUSPENDED, DEACTIVATED
+- Global exception handling with structured JSON responses
+- Full transactional service logic
 
-## Tech Stack
-- Java 17
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- Hibernate
-- MySQL
-- Maven
-- Cloudinary (for media storage)
-- Lombok
-- PostMan
+---
+
+## Roles & Permissions
+
+### ADMIN
+- Manage users — suspend, view learners and instructors
+- View all courses, reviews, and enrollments
+
+### INSTRUCTOR
+- Create and manage courses
+- Upload and manage course media with playlist ordering
+- View enrollments and course/instructor reviews
+
+### LEARNER
+- Browse and search public courses
+- Enroll in and cancel courses
+- Watch videos and track media progress
+- Add and delete course reviews
+- Switch profile to Instructor
+
+---
 
 ## Project Structure
-- Controller Layer
-- Service Layer
-- Repository Layer
-- Entity Layer
-- DTO Layer
-- Exception Handling
-- Configuration Layer
-- applicatin.properties and application.yml
+
+```
+src/
+├── controller/         REST controllers per role
+├── service/            Business logic interfaces and implementations
+├── repository/         Spring Data JPA repositories
+├── entity/             JPA entity classes
+├── dto/                Request and response DTOs
+├── exception/          Custom exceptions and global exception handler
+├── config/             Security, Cloudinary, Swagger configuration
+└── resources/
+    ├── application.properties
+    └── application.yml
+```
+
+---
 
 ## Environment Variables
-- CLOUDINARY_CLOUD_NAME
-- CLOUDINARY_API_KEY
-- CLOUDINARY_SECRET_KEY
-- DB_URL
-- DB_USERNAME
-- DB_PASSWORD
 
-## Roles
-ADMIN
-- Manage users
-- Manage courses
-- Manage accounts
-INSTRUCTOR
-- Create courses
-- Upload media
-- Manage course playlist
-- Manage course and course's medias
-LEARNER
-- View public courses
-- Enroll in course
-- Watch videos
-- Manage enrolled courses
+Set these in your `application.yml` before running:
 
-# Media Handling
-- Media stored in Cloudinary
-- Supports Thumbnail / Intro / Course Videos
-- Playlist ordering supported
-- Media order auto-adjust after delete
-- JPQL used for order shifting
+```yml
+CLOUDINARY_CLOUD_NAME: your_cloud_name
+CLOUDINARY_API_KEY: your_api_key
+CLOUDINARY_SECRET_KEY: your_secret_key
+DB_URL: jdbc:mysql://localhost:3306/lms3
+DB_USERNAME: your_db_username
+DB_PASSWORD: your_db_password
+```
+
+---
+
+## Media Handling
+
+- All media files stored on **Cloudinary**
+- Supported media types: `THUMBNAIL`, `INTRO`, `VIDEO`
+- Each course supports an ordered media playlist
+- On media deletion, playlist order auto-adjusts using JPQL order-shift queries
+
+---
+
+## Swagger API Documentation
+
+Swagger UI is integrated using **SpringDoc OpenAPI**.
+
+| Resource | URL |
+|---|---|
+| Swagger UI | `http://localhost:8080/swagger-ui/index.html` |
+| OpenAPI JSON Spec | `http://localhost:8080/v3/api-docs` |
+
+### How to use Swagger with JWT
+
+1. Run the application
+2. Open `http://localhost:8080/swagger-ui/index.html`
+3. Call `POST /api/lms3/auth/login` to get your JWT token
+4. Click the **Authorize** button at the top right of Swagger UI
+5. Enter your token as `Bearer your_token_here`
+6. All secured endpoints are now accessible directly from Swagger UI
+
+### SpringDoc dependency
+
+Add to `pom.xml` if not already present:
+
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.3.0</version>
+</dependency>
+```
+
+### Permit Swagger in Security Config
+
+Add these paths to your `SecurityFilterChain`:
+
+```java
+.requestMatchers(
+    "/swagger-ui/**",
+    "/swagger-ui.html",
+    "/v3/api-docs/**"
+).permitAll()
+```
+
+---
 
 ## API Endpoints
 
+Base URL: `http://localhost:8080/api/lms3`
+
+---
+
+### Public — No authentication required
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/public/register-user` | Register a new user |
+| `POST` | `/public/verify-user` | Request OTP for forgot password |
+| `POST` | `/auth/login` | Sign in — returns JWT token |
+| `POST` | `/public/forgot-password-change` | Change forgotten password using OTP |
+| `GET` | `/public/all-published-courses` | Get all publicly available courses |
+| `GET` | `/public/get-public-courses?keyword=` | Search courses by keyword |
+| `GET` | `/public/get-public-course/{id}` | Get a specific public course by ID |
+| `GET` | `/public/get-courses-category?category=` | Get courses filtered by category |
+
+---
+
+### User — Authentication required
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/user/password-change-request/verify-account` | Verify account before password change |
+| `POST` | `/user/password-change?otp=&new password=` | Change password using OTP |
+| `GET` | `/user/account-status` | Get current account status |
+| `GET` | `/user/get-roles` | Get assigned roles |
+
+---
+
+### Learner — Role: LEARNER
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/learner/get-myProfile` | Get learner profile |
+| `PUT` | `/learner/update-profile` | Update learner profile |
+| `PUT` | `/learner/update-status?status=` | Update account status |
+| `PUT` | `/learner/switch-profile` | Switch learner profile to instructor |
+| `GET` | `/learner/get-course/{id}` | Get enrolled course content |
+| `GET` | `/learner/get-courseMedia/{courseId}/{mediaId}` | Get specific media content |
+| `PUT` | `/learner/update-media-progress/{id}` | Update media watch progress |
+| `POST` | `/learner/addReview-Course/{id}` | Add a review to a course |
+| `DELETE` | `/learner/deleteReview-Course/{id}` | Delete own course review |
+
+---
+
+### Enrollment — Role: LEARNER
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/enrollment/enroll/{courseId}` | Enroll in a course |
+| `GET` | `/enrollment/isEnrolled/{courseId}` | Check enrollment status |
+| `GET` | `/enrollment/myEnrollments` | Get all enrolled courses |
+| `PUT` | `/enrollment/cancel-enrollment/{courseId}` | Cancel an enrollment |
+
+---
+
+### Instructor — Role: INSTRUCTOR
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/instructor/get-myProfile` | Get instructor profile |
+| `PUT` | `/instructor/update-profile` | Update instructor profile |
+| `GET` | `/instructor/get-stats` | Get course statistics dashboard |
+| `GET` | `/instructor/get-published-courses` | Get all published courses |
+| `GET` | `/instructor/get-draft-courses` | Get all draft courses |
+| `GET` | `/instructor/get-discontinued-courses` | Get all discontinued courses |
+| `PUT` | `/instructor/publish-course/{id}` | Publish a course |
+| `PUT` | `/instructor/draft-course/{id}` | Move a course to draft |
+| `PUT` | `/instructor/discontinue-course/{id}` | Discontinue a course |
+| `GET` | `/instructor/get-allCourse-Reviews` | Get all reviews across courses |
+| `GET` | `/instructor/get-course-reviews/{id}` | Get reviews for a specific course |
+| `GET` | `/instructor/get-myReviews` | Get all instructor-level reviews |
+
+---
+
+### Course — Role: INSTRUCTOR
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/course/register-course` | Create and register a new course |
+| `POST` | `/course/upload-media/{id}?mediaType=` | Upload media to a course |
+| `PUT` | `/course/update-course/{id}` | Update course details |
+| `PUT` | `/course/change-availability/{id}?choice=` | Toggle course availability |
+| `GET` | `/course/media-preview/{id}?mediaType=` | Preview uploaded media |
+| `GET` | `/course/get-course/{id}` | Get full course details |
+| `GET` | `/course/get-course-medias/{id}` | Get all media of a course |
+| `PUT` | `/course/mark-check/{courseId}/{mediaId}?check=` | Mark media as completed |
+| `DELETE` | `/course/delete-media/{id}` | Delete a media from course |
+
+---
+
+### Admin — Role: ADMIN
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/admin/all-learners` | Get all registered learners |
+| `GET` | `/admin/all-instructors` | Get all registered instructors |
+| `PUT` | `/admin/suspend-user?userEmail=` | Suspend a user account |
+| `GET` | `/admin/get-InstructorCourse?userEmail=` | Get courses of a specific instructor |
+| `GET` | `/admin/get-course/{id}` | Get individual course details |
+| `GET` | `/admin/get-allCourseReview/{id}` | Get all reviews for a course |
+| `GET` | `/admin/get-allInstructorReviews?instructorId=` | Get all reviews of an instructor |
+| `GET` | `/admin/get-student-courseReviews?email=` | Get course reviews by a student |
+| `GET` | `/admin/get-student-instructorReviews?email=` | Get instructor reviews by a student |
 
-** 📁 Public
+---
 
+## How to Run
 
-POST	Register User	/api/lms3/public/register-user
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/lms3.git
 
+# 2. Navigate into the project directory
+cd lms3
 
-POST	Verify User	/api/lms3/public/verify-user
+# 3. Configure application.yml with your database and Cloudinary credentials
 
+# 4. Run the application
+./mvnw spring-boot:run
+```
 
-POST	User Sign In	/api/lms/auth/login
+Application starts at `http://localhost:8080`
 
+Swagger UI available at `http://localhost:8080/swagger-ui/index.html`
 
-POST	Change Password (Forgot)	/api/lms3/public/forgot-password-change
+---
 
+## Author
 
-GET	Get All Published Courses	/api/lms3/public/all-published-courses
-
-
-GET	Get Course by Keyword	/api/lms3/public/get-public-courses?keyword=
-
-
-GET	Get Public Course by ID	/api/lms3/public/get-public-course/{id}
-
-
-GET	Get Courses by Category	/api/lms3/public/get-courses-category?category=
-
-
-GET	Get All Reviews of a Course	/lms/api/public/get-allReview/{id}
-
-
-GET	Get Public Instructor Profile	/api/lms/public/get-instructorProfile?instructor 
-name=
-
-
-GET	Get Cloudinary Resource	https://res.cloudinary.com/...
-
-
-** 📂 User → Instructor
-
-
-Method	Name	Endpoint
-
-
-GET	Get Profile	/api/lms3/instructor/get-myProfile
-
-
-PUT	Update Profile	/api/lms3/instructor/update-profile
-
-
-GET	Get Stats	/api/lms3/instructor/get-stats
-
-
-GET	Get Published Courses	/api/lms3/instructor/get-published-courses
-
-
-GET	Get Draft Courses	/api/lms3/instructor/get-draft-courses
-
-
-GET	Get Discontinued Courses	/api/lms3/instructor/get-discontinued-courses
-
-
-GET	Get All Course Reviews	/api/lms3/instructor/get-allCourse-Reviews
-
-
-GET	Get Reviews of Specific Course	/api/lms3/instructor/get-course-reviews/{id}
-
-
-GET	Get My Reviews	/api/lms3/instructor/get-myReviews
-
-
-GET	Activated Courses	/lms/api/instructor/get-allActiveCourses
-
-
-GET	Deactivated Courses	/lms/api/instructor/get-allDeactivatedCourses
-
-
-POST	Check Student Enrollment	/api/lms/instructor/check-enrollment/{id}?student-email=
-
-
-PUT	Activate Course	/api/lms/course/activate-course/{id}
-
-
-GET	Get All Enrollments	/api/lms/instructor/get-allEnrollments/{id}
-
-
-** 📂 User → Learner
-
-
-Method	Name	Endpoint
-
-
-GET	Get Profile	/api/lms3/learner/get-myProfile
-
-
-PUT	Update Profile	/api/lms3/learner/update-profile
-
-
-PUT	Switch to Instructor	/api/lms3/learner/switch-profile
-
-
-GET	Get Course Content by ID	/api/lms3/learner/get-course/{id}
-
-
-GET	Get Media by Media ID	/api/lms3/learner/get-courseMedia/{courseId}/{mediaId}
-
-
-PUT	Update Media Progress	/api/lms3/learner/update-media-progress/{id}
-
-
-POST	Add Review to Course	/api/lms3/learner/addReview-Course/{id}
-
-
-PUT	Check Course Completion	/api/lms3/course/mar-check/{courseId}/{mediaId}?check=
-
-
-** 📂 User → Instructor → Course
-
-
-Method	Name	Endpoint
-
-
-POST	Register Course	/api/lms3/course/register-course
-
-
-POST	Upload Media	/api/lms3/course/upload-media/{id}
-
-
-PUT	Update Course	/api/lms3/course/update-course/{id}
-
-
-PUT	Change Availability	/api/lms3/course/change-availability/{id}?choice=
-
-
-GET	Get Media Preview	/api/lms3/course/media-preview/{id}?mediaType=
-
-
-GET	Get Course by ID	/api/lms3/course/get-course/{id}
-
-
-GET	Get All Courses	/api/lms3/course/get-courses
-
-
-GET	Get Course Medias	/api/lms3/course/get-course-medias/{id}
-
-
-DELETE	Delete Course Media	/api/lms3/course/delete-media/{id}
-
-
-
-** 📂 User → Learner → Enrollment
-
-
-Method	Name	Endpoint
-
-
-POST	Enroll in Course	/api/lms3/learner/enroll/{courseId}
-
-
-GET	Check Enrollment	/api/lms3/enrollment/isEnrolled/{courseId}
-
-
-GET	Get My Enrollments	/api/lms3/enrollment/myEnrollments
-
-
-GET	Get All My Enrollments	/api/lms/learner/get-allMyEnrollments
-
-
-
-** 📂 User → User (Account)
-
-
-Method	Name	Endpoint
-POST	Verify for Password Change	/api/lms3/user/password-change-request/verify-account
-
-
-POST	Change Password	/api/lms3/user/password-change?otp=&new password=
-
-
-** 📁 Review
-
-
-Method	Name	Endpoint
-
-
-POST	Add Review to Course	/api/lms3/learner/addReview-Course/{id}
-
-
-DELETE	Delete Review	/lms/api/review/delete-review/{id}
-
-
-
-** 📁 Admin
-
-
-Method	Name	Endpoint
-
-
-GET	Get All Learners	/api/lms3/admin/all-learners
-
-
-GET	Get All Instructors	/api/lms3/admin/all-instructors
-
-
-PUT	Suspend User	/api/lms3/admin/suspend-user?userEmail=
-
-
-GET	Get All Courses of Instructor	/api/lms3/admin/get-InstructorCourse?userEmail=
-
-
-GET	Get Individual Course	/api/lms3/admin/get-course/{id}
-
-
-GET	Get All Course Reviews	/api/lms3/admin/get-allCourseReview/{id}
-
-
-GET	Get All Instructor Reviews	/api/lms3/admin/get-allInstructorReviews?instructorId=
-
-
-GET	Get Student's Course Reviews	/api/lms3/admin/get-student-courseReviews?email=
-
-
-GET	Get Student's Instructor Reviews	/api/lms3/admin/get-student-instructorReviews?
-email=
-
-
-
-# How to Run
-1. Clone repository
-2. Configure application.yml
-3. Add Cloudinary credentials
-4. Add database config
-5. Run Spring Boot application
+**Gaurav Singh**
+Backend Dev — Java, Spring Boot
