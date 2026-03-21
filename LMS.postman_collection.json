@@ -1,2397 +1,533 @@
 {
   "info": {
-    "_postman_id": "8729fb2c-3c66-4f0d-8f72-59a2c64c508a",
-    "name": "LMS",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "37895345"
+    "name": "Learning Management System (LMS)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/lms3",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ],
   "item": [
-    {
-      "name": "User",
-      "item": [
-        {
-          "name": "Instructor",
-          "item": [
-            {
-              "name": "Course",
-              "item": [
-                {
-                  "name": "Register Course",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "POST",
-                    "header": [],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n    \"courseTitle\": \"Japanese Learning Course 1.O\",\r\n    \"courseDescription\": \"Learn complete n5 level Japanese language.\",\r\n    \"courseType\": \"Language\",\r\n    \"coursePrice\": 3999.0,\r\n    \"courseDuration\": \"102 hours\"\r\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/register-course",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "register-course"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Upload Media",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "POST",
-                    "header": [],
-                    "body": {
-                      "mode": "formdata",
-                      "formdata": [
-                        {
-                          "key": "mediaType",
-                          "value": "course_video",
-                          "type": "text",
-                          "uuid": "2a2baa7e-73ae-4bf8-aaad-7ab67c9ea59f"
-                        },
-                        {
-                          "key": "media",
-                          "type": "file",
-                          "uuid": "7740d5db-ff9e-4a3e-a1d8-e97ad880cf38",
-                          "src": "/C:/Users/gaura/OneDrive/Pictures/PJ.mp4"
-                        }
-                      ]
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/upload-media/4",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "upload-media",
-                        "4"
-                      ],
-                      "query": [
-                        {
-                          "key": "mediaType",
-                          "value": "course_video",
-                          "type": "text",
-                          "disabled": true
-                        }
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Update course",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "PUT",
-                    "header": [],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n    \"courseTitle\": \"Japanese Learning Course 4.O\"\r\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/update-course/7",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "update-course",
-                        "7"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Get Media Preview",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/media-preview/7?mediaType=intro",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "media-preview",
-                        "7"
-                      ],
-                      "query": [
-                        {
-                          "key": "mediaType",
-                          "value": "intro"
-                        }
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Get course by course id",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni20048851@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/get-course/1",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "get-course",
-                        "1"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Change Availability",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni20048851@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "PUT",
-                    "header": [],
-                    "body": {
-                      "mode": "formdata",
-                      "formdata": [
-                        {
-                          "key": "choice",
-                          "value": "true",
-                          "type": "text",
-                          "uuid": "f1451200-c262-4160-9f06-a9951718bbab",
-                          "disabled": true
-                        }
-                      ]
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/change-availability/2?choice=true",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "change-availability",
-                        "2"
-                      ],
-                      "query": [
-                        {
-                          "key": "choice",
-                          "value": "true"
-                        }
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Get all Courses",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni20048851@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/get-courses",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "get-courses"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "get all courses",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/get-courses",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "get-courses"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "get course",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/get-course/4",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "get-course",
-                        "4"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "get course medias",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/get-course-medias/4",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "get-course-medias",
-                        "4"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Delete course media by instructor",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravsoni54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "DELETE",
-                    "header": [],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "{\r\n    \"mediaId\": \"20\",\r\n    \"courseMediaType\": \"COURSE_VIDEO\"\r\n}",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/course/delete-media/4",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "course",
-                        "delete-media",
-                        "4"
-                      ]
-                    }
-                  },
-                  "response": []
-                }
-              ]
-            },
-            {
-              "name": "get profile",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-myProfile",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-myProfile"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update Profile",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"expertise\": [\r\n        \"Java\",\r\n        \"Spring Boot\",\r\n        \"Microservices\",\r\n        \"Data Structure and Algorithem expert\",\r\n        \"Japanese Beigneer Teacher\"\r\n    ]\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/update-profile",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "update-profile"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Activated Courses",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni789@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/lms/api/instructor/get-allActiveCourses",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "lms",
-                    "api",
-                    "instructor",
-                    "get-allActiveCourses"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Check student enrollment",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXZ2djU0NjcwQGdtYWlsLmNvbSIsImlhdCI6MTc2NTU2MjQ4MSwiZXhwIjoxNzY1NTY0MjgxfQ.DrfDKS0H1RWwwX4QOXzAJ_5lFVtrWdgbLVRgeEYBx_Dt5jKbCiif3YXygtJy2Xb4u3hQ7S3dubTiTm6QjQNlxg",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms/instructor/check-enrollment/2?student-email=gauravsoni54670@gmail.com",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms",
-                    "instructor",
-                    "check-enrollment",
-                    "2"
-                  ],
-                  "query": [
-                    {
-                      "key": "student-email",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Deactivated Courses",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/lms/api/instructor//get-allDeactivatedCourses",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "lms",
-                    "api",
-                    "instructor",
-                    "",
-                    "get-allDeactivatedCourses"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Activate Course",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXZzb25pNTQ2NzBAZ21haWwuY29tIiwiaWF0IjoxNzY1NTQ4MDQyLCJleHAiOjE3NjU1NDk4NDJ9.eaJXthLSU16-Qkctk_ZCNuBS8gw7nAs9dqQBwlI0Vkq-uuutyEOFfnjQKRK4As_whySReFGrXNC5H5K5Zl8qQQ",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms/course/activate-course/2",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms",
-                    "course",
-                    "activate-course",
-                    "2"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get all enrollment",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXZ2djU0NjcwQGdtYWlsLmNvbSIsImlhdCI6MTc2NTU2MjY1OSwiZXhwIjoxNzY1NTY0NDU5fQ.AZFXOVcgncpR_-J1EXZAQ_9wjZL-ql4qVWM7JTcJfWmt3OeWkkI-Ngf7Bw7r1EwQB6Reno6Ya5GTW_nESIuWkA",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms/instructor/get-allEnrollments/2",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms",
-                    "instructor",
-                    "get-allEnrollments",
-                    "2"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get Stats",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-stats",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-stats"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get Published Course",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-published-courses",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-published-courses"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get Draft Course",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-draft-courses",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-draft-courses"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get discontinued course",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-discontinued-courses",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-discontinued-courses"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get reviews of Courses",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-allCourse-Reviews",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-allCourse-Reviews"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get reviews of Course",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-course-reviews/4",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-course-reviews",
-                    "4"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get my reviews",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/instructor/get-myReviews",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "instructor",
-                    "get-myReviews"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "Learner",
-          "item": [
-            {
-              "name": "Enrollment",
-              "item": [
-                {
-                  "name": "Enroll in course",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravvv54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "POST",
-                    "header": [],
-                    "body": {
-                      "mode": "raw",
-                      "raw": "",
-                      "options": {
-                        "raw": {
-                          "language": "json"
-                        }
-                      }
-                    },
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/learner/enroll/7",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "learner",
-                        "enroll",
-                        "7"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Check Enrollment",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravvv54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/enrollment/isEnrolled/7",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "enrollment",
-                        "isEnrolled",
-                        "7"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "Get My Enrollments",
-                  "request": {
-                    "auth": {
-                      "type": "basic",
-                      "basic": [
-                        {
-                          "key": "username",
-                          "value": "gauravvv54670@gmail.com",
-                          "type": "string"
-                        },
-                        {
-                          "key": "password",
-                          "value": "Gaurav123",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms3/enrollment/myEnrollments",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms3",
-                        "enrollment",
-                        "myEnrollments"
-                      ]
-                    }
-                  },
-                  "response": []
-                },
-                {
-                  "name": "get all enrollments",
-                  "request": {
-                    "auth": {
-                      "type": "bearer",
-                      "bearer": [
-                        {
-                          "key": "token",
-                          "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnYXVyYXZzb25pNTQ2NzBAZ21haWwuY29tIiwiaWF0IjoxNzY1NTY0MTQ0LCJleHAiOjE3NjU1NjU5NDR9.q5hSBwItERrVS7WmriNz4dZYPa1B7wh9S0cKm1TacMeHMkWR6ofe-G6Qg7tvK7PZYEHbXUxAINSmXQ9ANnG7Mw",
-                          "type": "string"
-                        }
-                      ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                      "raw": "http://localhost:8080/api/lms/learner/get-allMyEnrollments",
-                      "protocol": "http",
-                      "host": [
-                        "localhost"
-                      ],
-                      "port": "8080",
-                      "path": [
-                        "api",
-                        "lms",
-                        "learner",
-                        "get-allMyEnrollments"
-                      ]
-                    }
-                  },
-                  "response": []
-                }
-              ]
-            },
-            {
-              "name": "Switch to instructor",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/switch-profile",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "switch-profile"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get Profile",
-              "protocolProfileBehavior": {
-                "disabledSystemHeaders": {}
-              },
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/get-myProfile",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "get-myProfile"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update Profile",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"userFullName\": \"\",\r\n    \"bio\": \"Half time Japanese learner and Half time techi\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/update-profile",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "update-profile"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Add review to course",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/addReview-Course/7",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "addReview-Course",
-                    "7"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get course content by course Id",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravvv54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/get-course/4",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "get-course",
-                    "4"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Get media by media id",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravvv54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/get-courseMedia/4/24",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "get-courseMedia",
-                    "4",
-                    "24"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update media progress entity",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravvv54670@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"mediaId\": 25,\r\n    \"currentMediaTimeStamp\": 5.1\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/learner/update-media-progress/4",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "learner",
-                    "update-media-progress",
-                    "4"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Check Course Completion",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "password",
-                      "value": "Sachin@123",
-                      "type": "string"
-                    },
-                    {
-                      "key": "username",
-                      "value": "sachin.rawat15@gmail.com",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/course/mar-check/(courseId}/{mediaId}?check=true",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "course",
-                    "mar-check",
-                    "(courseId}",
-                    "{mediaId}"
-                  ],
-                  "query": [
-                    {
-                      "key": "check",
-                      "value": "true",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "User",
-          "item": [
-            {
-              "name": "verify for changing password",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/user/password-change-request/verify-account?old password=Gaurav123",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "user",
-                    "password-change-request",
-                    "verify-account"
-                  ],
-                  "query": [
-                    {
-                      "key": "old password",
-                      "value": "Gaurav123"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "change password",
-              "request": {
-                "auth": {
-                  "type": "basic",
-                  "basic": [
-                    {
-                      "key": "username",
-                      "value": "gauravsoni20048851@gmail.com",
-                      "type": "string"
-                    },
-                    {
-                      "key": "password",
-                      "value": "Gaurav123",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8080/api/lms3/user/password-change?otp=748007&new password=Gaurav@123",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "lms3",
-                    "user",
-                    "password-change"
-                  ],
-                  "query": [
-                    {
-                      "key": "otp",
-                      "value": "748007"
-                    },
-                    {
-                      "key": "new password",
-                      "value": "Gaurav@123"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Review",
-      "item": [
-        {
-          "name": "Review to the course",
-          "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravvv54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"rating\" : 3,\r\n    \"comment\": \"Extraodinary Fabulous course\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/learner/addReview-Course/4",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "learner",
-                "addReview-Course",
-                "4"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Review",
-          "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni789@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/lms/api/review/delete-review/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "lms",
-                "api",
-                "review",
-                "delete-review",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
     {
       "name": "Public",
       "item": [
         {
           "name": "Register User",
           "request": {
-            "auth": {
-              "type": "noauth"
-            },
             "method": "POST",
-            "header": [],
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{baseUrl}}/public/register-user", "host": ["{{baseUrl}}"], "path": ["public", "register-user"]},
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"gauravvv54670@gmail.com\",\r\n    \"fullName\": \"Gaurav Soni\",\r\n    \"password\": \"Gaurav123\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/public/register-user",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "register-user"
-              ]
+              "raw": "{\n  \"email\": \"gaurav@example.com\",\n  \"fullName\": \"Gaurav Singh\",\n  \"password\": \"password123\"\n}",
+              "options": {"raw": {"language": "json"}}
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Get all public courses",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/public/all-published-courses",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "all-published-courses"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get course by keyword",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/public/get-public-courses?keyword=japanese",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "get-public-courses"
-              ],
-              "query": [
-                {
-                  "key": "page number",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "page size",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "japanese"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Request",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "https://res.cloudinary.com/duwddcbuk/image/upload/v1764685964/pighdiyccv1uoxezl1jk.jpg",
-              "protocol": "https",
-              "host": [
-                "res",
-                "cloudinary",
-                "com"
-              ],
-              "path": [
-                "duwddcbuk",
-                "image",
-                "upload",
-                "v1764685964",
-                "pighdiyccv1uoxezl1jk.jpg"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get all review of course",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/lms/api/public/get-allReview/1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "lms",
-                "api",
-                "public",
-                "get-allReview",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get public instructor profile",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms/public/get-instructorProfile?instructor name=Gaurav",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms",
-                "public",
-                "get-instructorProfile"
-              ],
-              "query": [
-                {
-                  "key": "instructor name",
-                  "value": "Gaurav"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "User Sign in",
+          "name": "Verify User (Forgot Password Request)",
           "request": {
             "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\":\"gauravsoni54670@gmail.com\",\r\n    \"password\":\"Gaurav123\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "http://localhost:8080/api/lms/auth/login",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms",
-                "auth",
-                "login"
-              ]
+              "raw": "{{baseUrl}}/public/verify-user?email=gaurav@example.com",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "verify-user"],
+              "query": [{"key": "email", "value": "gaurav@example.com"}]
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "verify user",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/public/verify-user",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "verify-user"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "change password",
+          "name": "Forgot Password Change",
           "request": {
             "method": "POST",
-            "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/lms3/public/forgot-password-change?otp=904362&new password=Gaurav123&email=gauravsoni20048851@gmail.com",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "forgot-password-change"
-              ],
+              "raw": "{{baseUrl}}/public/forgot-password-change?email=gaurav@example.com&otp=1234&new password=newpass123",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "forgot-password-change"],
               "query": [
-                {
-                  "key": "otp",
-                  "value": "904362",
-                  "type": "text"
-                },
-                {
-                  "key": "new password",
-                  "value": "Gaurav123",
-                  "type": "text"
-                },
-                {
-                  "key": "email",
-                  "value": "gauravsoni20048851@gmail.com",
-                  "type": "text"
-                }
+                {"key": "email", "value": "gaurav@example.com"},
+                {"key": "otp", "value": "1234"},
+                {"key": "new password", "value": "newpass123"}
               ]
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "get course",
+          "name": "Get All Published Courses",
           "request": {
-            "auth": {
-              "type": "noauth"
-            },
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/public/get-public-course/4",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "get-public-course",
-                "4"
-              ]
-            }
-          },
-          "response": []
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/public/all-published-courses", "host": ["{{baseUrl}}"], "path": ["public", "all-published-courses"]}
+          }
         },
         {
-          "name": "get course by category",
+          "name": "Get Public Course by ID",
           "request": {
-            "auth": {
-              "type": "noauth"
-            },
             "method": "GET",
-            "header": [],
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/public/get-public-course/1", "host": ["{{baseUrl}}"], "path": ["public", "get-public-course", "1"]}
+          }
+        },
+        {
+          "name": "Search Courses by Keyword",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
             "url": {
-              "raw": "http://localhost:8080/api/lms3/public/get-courses-category?category=language",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "public",
-                "get-courses-category"
-              ],
-              "query": [
-                {
-                  "key": "category",
-                  "value": "language"
-                }
-              ]
+              "raw": "{{baseUrl}}/public/get-public-courses?keyword=spring boot",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "get-public-courses"],
+              "query": [{"key": "keyword", "value": "spring boot"}]
             }
-          },
-          "response": []
+          }
+        },
+        {
+          "name": "Get Courses by Category",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/public/get-courses-category?category=PROGRAMMING",
+              "host": ["{{baseUrl}}"],
+              "path": ["public", "get-courses-category"],
+              "query": [{"key": "category", "value": "PROGRAMMING"}]
+            }
+          }
         }
       ]
     },
     {
-      "name": "Admin",
+      "name": "User",
       "item": [
         {
-          "name": "Get all learners",
+          "name": "Verify Account for Password Change",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
             "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/all-learners",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "all-learners"
-              ]
+              "raw": "{{baseUrl}}/user/password-change-request/verify-account?old password=password123",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "password-change-request", "verify-account"],
+              "query": [{"key": "old password", "value": "password123"}]
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Get all instructors",
+          "name": "Change Password",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
             "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/all-instructors",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "all-instructors"
+              "raw": "{{baseUrl}}/user/password-change?otp=1234&new password=newpass123",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "password-change"],
+              "query": [
+                {"key": "otp", "value": "1234"},
+                {"key": "new password", "value": "newpass123"}
               ]
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Suspend user",
+          "name": "Get Account Status",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/user/account-status", "host": ["{{baseUrl}}"], "path": ["user", "account-status"]}
+          }
+        },
+        {
+          "name": "Get My Roles",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/user/get-roles", "host": ["{{baseUrl}}"], "path": ["user", "get-roles"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Learner (Student)",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/learner/get-myProfile", "host": ["{{baseUrl}}"], "path": ["learner", "get-myProfile"]}
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
             "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/suspend-user?userEmail=gauravsoni20048851@gmail.com",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "suspend-user"
-              ],
-              "query": [
-                {
-                  "key": "userEmail",
-                  "value": "gauravsoni20048851@gmail.com",
-                  "type": "text"
-                }
-              ]
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/learner/update-profile", "host": ["{{baseUrl}}"], "path": ["learner", "update-profile"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Gaurav Kumar\",\n  \"bio\": \"Java developer\"\n}",
+              "options": {"raw": {"language": "json"}}
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Get all courses of instructor",
+          "name": "Update Account Status",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
             "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-InstructorCourse?userEmail=gauravsoni20048851@gmail.com",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-InstructorCourse"
-              ],
-              "query": [
-                {
-                  "key": "userEmail",
-                  "value": "gauravsoni20048851@gmail.com"
-                }
-              ]
+              "raw": "{{baseUrl}}/learner/update-status?status=ACTIVE",
+              "host": ["{{baseUrl}}"],
+              "path": ["learner", "update-status"],
+              "query": [{"key": "status", "value": "ACTIVE"}]
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Get individual course",
+          "name": "Switch Profile to Instructor",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-course/2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-course",
-                "2"
-              ]
-            }
-          },
-          "response": []
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/learner/switch-profile", "host": ["{{baseUrl}}"], "path": ["learner", "switch-profile"]}
+          }
         },
         {
-          "name": "Get all course reviews",
+          "name": "Add Course Review",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-allCourseReview/4",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-allCourseReview",
-                "4"
-              ]
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/learner/addReview-Course/1", "host": ["{{baseUrl}}"], "path": ["learner", "addReview-Course", "1"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Excellent course!\"\n}",
+              "options": {"raw": {"language": "json"}}
             }
-          },
-          "response": []
+          }
         },
         {
-          "name": "Get all Instructor Reviews",
+          "name": "Delete Course Review",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-allInstructorReviews?instructorId=1",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-allInstructorReviews"
-              ],
-              "query": [
-                {
-                  "key": "instructorId",
-                  "value": "1",
-                  "type": "text"
-                }
-              ]
-            }
-          },
-          "response": []
+            "method": "DELETE",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/learner/deleteReview-Course/1", "host": ["{{baseUrl}}"], "path": ["learner", "deleteReview-Course", "1"]}
+          }
         },
         {
-          "name": "Get Student's course reviews",
+          "name": "Get Course Content",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-student-courseReviews?email=gauravvv54670@gmail.com",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-student-courseReviews"
-              ],
-              "query": [
-                {
-                  "key": "email",
-                  "value": "gauravvv54670@gmail.com"
-                }
-              ]
-            }
-          },
-          "response": []
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/learner/get-course/1", "host": ["{{baseUrl}}"], "path": ["learner", "get-course", "1"]}
+          }
         },
         {
-          "name": "Get Student's Instructor Reviews",
+          "name": "Get Course Media",
           "request": {
-            "auth": {
-              "type": "basic",
-              "basic": [
-                {
-                  "key": "username",
-                  "value": "gauravsoni54670@gmail.com",
-                  "type": "string"
-                },
-                {
-                  "key": "password",
-                  "value": "Gaurav123",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:8080/api/lms3/admin/get-student-instructorReviews?email=gauravvv54670@gmail.com",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "lms3",
-                "admin",
-                "get-student-instructorReviews"
-              ],
-              "query": [
-                {
-                  "key": "email",
-                  "value": "gauravvv54670@gmail.com"
-                }
-              ]
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/learner/get-courseMedia/1/1", "host": ["{{baseUrl}}"], "path": ["learner", "get-courseMedia", "1", "1"]}
+          }
+        },
+        {
+          "name": "Update Media Progress",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/learner/update-media-progress/1", "host": ["{{baseUrl}}"], "path": ["learner", "update-media-progress", "1"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mediaId\": 1,\n  \"watchedDuration\": 120,\n  \"totalDuration\": 300\n}",
+              "options": {"raw": {"language": "json"}}
             }
-          },
-          "response": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "Instructor",
+      "item": [
+        {
+          "name": "Get My Profile",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-myProfile", "host": ["{{baseUrl}}"], "path": ["instructor", "get-myProfile"]}
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/instructor/update-profile", "host": ["{{baseUrl}}"], "path": ["instructor", "update-profile"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bio\": \"Senior Java Developer\",\n  \"expertise\": \"Spring Boot\"\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Get Course Stats Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-stats", "host": ["{{baseUrl}}"], "path": ["instructor", "get-stats"]}
+          }
+        },
+        {
+          "name": "Get Published Courses",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-published-courses", "host": ["{{baseUrl}}"], "path": ["instructor", "get-published-courses"]}
+          }
+        },
+        {
+          "name": "Get Draft Courses",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-draft-courses", "host": ["{{baseUrl}}"], "path": ["instructor", "get-draft-courses"]}
+          }
+        },
+        {
+          "name": "Get Discontinued Courses",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-discontinued-courses", "host": ["{{baseUrl}}"], "path": ["instructor", "get-discontinued-courses"]}
+          }
+        },
+        {
+          "name": "Publish Course",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/publish-course/1", "host": ["{{baseUrl}}"], "path": ["instructor", "publish-course", "1"]}
+          }
+        },
+        {
+          "name": "Draft Course",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/draft-course/1", "host": ["{{baseUrl}}"], "path": ["instructor", "draft-course", "1"]}
+          }
+        },
+        {
+          "name": "Discontinue Course",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/discontinue-course/1", "host": ["{{baseUrl}}"], "path": ["instructor", "discontinue-course", "1"]}
+          }
+        },
+        {
+          "name": "Get All Course Reviews",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-allCourse-Reviews", "host": ["{{baseUrl}}"], "path": ["instructor", "get-allCourse-Reviews"]}
+          }
+        },
+        {
+          "name": "Get Reviews of Specific Course",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-course-reviews/1", "host": ["{{baseUrl}}"], "path": ["instructor", "get-course-reviews", "1"]}
+          }
+        },
+        {
+          "name": "Get My Reviews",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/instructor/get-myReviews", "host": ["{{baseUrl}}"], "path": ["instructor", "get-myReviews"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Course",
+      "item": [
+        {
+          "name": "Register Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/course/register-course", "host": ["{{baseUrl}}"], "path": ["course", "register-course"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courseTitle\": \"Spring Boot Masterclass\",\n  \"courseDescription\": \"Learn Spring Boot from scratch\",\n  \"courseCategory\": \"PROGRAMMING\",\n  \"coursePrice\": 999.00\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Upload Course Media",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/course/upload-media/1?mediaType=VIDEO",
+              "host": ["{{baseUrl}}"],
+              "path": ["course", "upload-media", "1"],
+              "query": [{"key": "mediaType", "value": "VIDEO"}]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [{"key": "media", "type": "file", "src": ""}]
+            }
+          }
+        },
+        {
+          "name": "Get Media Preview",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/course/media-preview/1?mediaType=VIDEO",
+              "host": ["{{baseUrl}}"],
+              "path": ["course", "media-preview", "1"],
+              "query": [{"key": "mediaType", "value": "VIDEO"}]
+            }
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/course/update-course/1", "host": ["{{baseUrl}}"], "path": ["course", "update-course", "1"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courseTitle\": \"Spring Boot Advanced\",\n  \"courseDescription\": \"Advanced Spring Boot concepts\"\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Change Course Availability",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/course/change-availability/1?choice=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["course", "change-availability", "1"],
+              "query": [{"key": "choice", "value": "true"}]
+            }
+          }
+        },
+        {
+          "name": "Get Course by Instructor",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/course/get-course/1", "host": ["{{baseUrl}}"], "path": ["course", "get-course", "1"]}
+          }
+        },
+        {
+          "name": "Delete Course Media",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{token}}"}
+            ],
+            "url": {"raw": "{{baseUrl}}/course/delete-media/1", "host": ["{{baseUrl}}"], "path": ["course", "delete-media", "1"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mediaId\": 1,\n  \"mediaType\": \"VIDEO\"\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Get All Course Medias",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/course/get-course-medias/1", "host": ["{{baseUrl}}"], "path": ["course", "get-course-medias", "1"]}
+          }
+        },
+        {
+          "name": "Mark Media Check",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {
+              "raw": "{{baseUrl}}/course/mark-check/1/1?check=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["course", "mark-check", "1", "1"],
+              "query": [{"key": "check", "value": "true"}]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "item": [
+        {
+          "name": "Enroll in Course",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/enrollment/enroll/1", "host": ["{{baseUrl}}"], "path": ["enrollment", "enroll", "1"]}
+          }
+        },
+        {
+          "name": "Is Enrolled in Course",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/enrollment/isEnrolled/1", "host": ["{{baseUrl}}"], "path": ["enrollment", "isEnrolled", "1"]}
+          }
+        },
+        {
+          "name": "Get My Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/enrollment/myEnrollments", "host": ["{{baseUrl}}"], "path": ["enrollment", "myEnrollments"]}
+          }
+        },
+        {
+          "name": "Cancel Enrollment",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{baseUrl}}/enrollment/cancel-enrollment/1", "host": ["{{baseUrl}}"], "path": ["enrollment", "cancel-enrollment", "1"]}
+          }
         }
       ]
     }
