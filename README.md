@@ -60,36 +60,35 @@ Supports course creation, media upload, enrollment, JWT authentication, and role
 
 ## Project Structure
 
-```
 src/
-├── controller/         REST controllers per role
-├── service/            Business logic interfaces and implementations
-├── repository/         Spring Data JPA repositories
-├── entity/             JPA entity classes
-├── dto/                Request and response DTOs
-├── exception/          Custom exceptions and global exception handler
-├── config/             Security, Cloudinary, Swagger configuration
+├── controller/             REST controllers per role
+├── service/                Business logic interfaces and implementations
+├── repository/             Spring Data JPA repositories
+├── entity/                 JPA entity classes
+├── dto/
+│   ├── CourseDTO/
+│   │   ├── CourseReviewDTO     — review request and response for a course
+│   │   ├── EnrollmentDTO       — enrollment request and response
+│   │   └── MediaDTO            — media upload, preview, and progress DTOs
+│   └── UserDTO/
+│       ├── InstructorDTO       — instructor profile, stats, and course overview DTOs
+│       └── StudentDTO          — student profile, course content, and progress DTOs
+├── exception/              Custom exceptions and global exception handler
+├── config/                 Security, Cloudinary, Swagger configuration
 └── resources/
     ├── application.properties
     └── application.yml
-```
-
----
 
 ## Environment Variables
 
-Set these in your `application.yml` before running:
+Set these in your `applicatin.yml` before running:
 
-```yml
 CLOUDINARY_CLOUD_NAME: your_cloud_name
 CLOUDINARY_API_KEY: your_api_key
 CLOUDINARY_SECRET_KEY: your_secret_key
 DB_URL: jdbc:mysql://localhost:3306/lms3
 DB_USERNAME: your_db_username
 DB_PASSWORD: your_db_password
-```
-
----
 
 ## Media Handling
 
