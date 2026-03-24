@@ -1,4 +1,8 @@
 # LMS3 — Learning Management System
+![MySQL](https://img.shields.io/badge/MySQL-Aiven%20Cloud-blue?logo=mysql)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green?logo=springboot)
+![Cloudinary](https://img.shields.io/badge/Media-Cloudinary-orange?logo=cloudinary)
+![JWT](https://img.shields.io/badge/Auth-JWT-yellow)
 
 A backend REST API for a Learning Management System built with Spring Boot.
 Supports course creation, media upload, enrollment, JWT authentication, and role-based authorization.
@@ -15,13 +19,21 @@ Supports course creation, media upload, enrollment, JWT authentication, and role
 | Framework          | Spring Boot                   |
 | Security           | Spring Security + JWT         |
 | ORM                | Spring Data JPA / Hibernate   |
-| Database           | MySQL                         |
+| Database           | MySQL (Aiven Cloud)           |
 | Build Tool         | Maven                         |
 | Media Storage      | Cloudinary                    |
 | API Documentation  | Swagger (SpringDoc OpenAPI)   |
 | API Testing        | Postman                       |
 
 ---
+## Cloud Infrastructure
+
+| Service         | Provider         | Purpose                          |
+|-----------------|------------------|----------------------------------|
+| MySQL Database  | Aiven Cloud      | Cloud-hosted production database |
+| Media Storage   | Cloudinary       | Course thumbnails, videos        |
+
+> All data is stored and managed on cloud infrastructure — no local database required to run this project.
 
 ## Features
 
@@ -85,15 +97,16 @@ src/
 
 ## Environment Variables
 
+This project uses **Aiven Cloud MySQL** as its database.
 Set these in your `application.yml` before running:
-
 ```yml
 CLOUDINARY_CLOUD_NAME: your_cloud_name
 CLOUDINARY_API_KEY: your_api_key
 CLOUDINARY_SECRET_KEY: your_secret_key
-DB_URL: jdbc:mysql://localhost:3306/lms3
-DB_USERNAME: your_db_username
-DB_PASSWORD: your_db_password
+DB_URL: jdbc:mysql://<aiven-host>:<port>/learningmanagementsystem3?ssl-mode=REQUIRED
+DB_USERNAME: your_aiven_username
+DB_PASSWORD: your_aiven_password
+LOCAL_DB_PASSWORD: your_db_password
 ```
 
 ---
