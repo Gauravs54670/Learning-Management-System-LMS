@@ -126,8 +126,8 @@ Swagger UI is integrated using **SpringDoc OpenAPI**.
 
 | Resource            | URL                                              |
 |---------------------|--------------------------------------------------|
-| Swagger UI          | `http://localhost:8080/swagger-ui/index.html`    |
-| OpenAPI JSON Spec   | `http://localhost:8080/v3/api-docs`              |
+| Swagger UI          | `http://localhost:8080/api/lms3/swagger-ui/index.html`|
+| OpenAPI JSON Spec   | `http://localhost:8080/api/lms3/v3/api-docs`          |
 
 ### How to use Swagger with JWT
 
