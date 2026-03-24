@@ -1,4 +1,4 @@
-# LMS3 — Learning Management System API
+# LMS3 — Learning Management System
 
 A backend REST API for a Learning Management System built with Spring Boot.
 Supports course creation, media upload, enrollment, JWT authentication, and role-based authorization.
